@@ -17,6 +17,10 @@
 # limitations under the License.
 #
 
+require "securerandom"
+
+package 'libmysqlclient-dev'
+
 Erubis::Context.send(:include, Extensions::Templates)
 
 sentry_user = node["sentry"]["user"]
@@ -36,6 +40,21 @@ sentry_config = if node["sentry"]["use_encrypted_data_bag"]
     node["sentry"]["data_bag"],
     node["sentry"]["data_bag_item"]
   )
+elsif node["sentry"]["use_conjur"]
+  {
+    admin_username: "admin",
+    admin_password: "admin",
+    admin_email: "admin@demo.com",
+    database_name: "sentry",
+    database_user: "sentry",
+    database_password: ENV['DB_PASSWORD'],
+    database_host: ENV['DB_HOST'],
+    database_port: "3306",
+    signing_token: SecureRandom.hex,
+    email_host_user: "xxxxxxx",
+    email_host_password: "xxxxxxx",
+    additional_env_vars: {}
+  }
 else
   data_bag_item(
     node["sentry"]["data_bag"],

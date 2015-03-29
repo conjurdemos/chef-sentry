@@ -15,6 +15,10 @@ suites:
   - "recipe[sentry_test::default]"
   - "recipe[minitest-handler]"
 
+- name: with-conjur
+  run_list:
+  - "recipe[sentry]"
+
 - name: encrypted_databag
   run_list:
   - "recipe[chef-solo-search]"

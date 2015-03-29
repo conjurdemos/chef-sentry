@@ -16,7 +16,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 include_recipe "sentry::_install"
 include_recipe "sentry::_configure"
 include_recipe "sentry::_service"
