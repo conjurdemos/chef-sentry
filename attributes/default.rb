@@ -39,7 +39,7 @@ default["sentry"]["config_file_path"] = "#{node["sentry"]["config_dir"]}/config.
 default["sentry"]["env_d_path"] = "/etc/sentry.d"
 default["sentry"]["env_path"] = "#{node["sentry"]["env_d_path"]}/env"
 
-default["sentry"]["config"]["db_engine"] = "django.db.backends.postgresql_psycopg2"
+default["sentry"]["config"]["db_engine"] = "django.db.backends.mysql"
 default["sentry"]["config"]["db_options"] = {autocommit: true}
 default["sentry"]["config"]["allow_registration"] = false
 default["sentry"]["config"]["public"] = false
