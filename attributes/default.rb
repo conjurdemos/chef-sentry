@@ -19,7 +19,7 @@
 
 include_attribute "python::default"
 
-default["sentry"]["version"] = "5.4.6"
+default["sentry"]["version"] = "7.4.3"
 default["sentry"]["user"] = "sentry"
 default["sentry"]["group"] = "sentry"
 default["sentry"]["pipname"] = "sentry"
@@ -43,7 +43,7 @@ default["sentry"]["config"]["db_engine"] = "django.db.backends.mysql"
 default["sentry"]["config"]["db_options"] = {autocommit: true}
 default["sentry"]["config"]["allow_registration"] = false
 default["sentry"]["config"]["public"] = false
-default["sentry"]["config"]["web_host"] = "127.0.0.1"
+default["sentry"]["config"]["web_host"] = "0.0.0.0"
 default["sentry"]["config"]["web_port"] = 9000
 default["sentry"]["config"]["web_options"] = {
   "workers" => 3,
@@ -65,3 +65,4 @@ default["sentry"]["config"]["append_middleware_classes"] = []
 default["sentry"]["data_bag"] = "sentry"
 default["sentry"]["data_bag_item"] = "credentials"
 default["sentry"]["use_encrypted_data_bag"] = false
+default["sentry"]["use_environment"] = true
