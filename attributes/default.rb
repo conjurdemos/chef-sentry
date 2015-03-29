@@ -65,3 +65,4 @@ default["sentry"]["config"]["append_middleware_classes"] = []
 default["sentry"]["data_bag"] = "sentry"
 default["sentry"]["data_bag_item"] = "credentials"
 default["sentry"]["use_encrypted_data_bag"] = false
+default["sentry"]["use_environment"] = true

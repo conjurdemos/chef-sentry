@@ -17,6 +17,6 @@
 # limitations under the License.
 #
 
-include_recipe "sentry::_install"
-include_recipe "sentry::_configure"
-include_recipe "sentry::_service"
+include_recipe "sentry-keg::_install"
+include_recipe "sentry-keg::_configure"
+include_recipe "sentry-keg::_service"

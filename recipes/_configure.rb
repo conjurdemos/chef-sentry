@@ -19,6 +19,8 @@
 
 Erubis::Context.send(:include, Extensions::Templates)
 
+require "securerandom"
+
 sentry_user = node["sentry"]["user"]
 sentry_group = node["sentry"]["group"]
 
@@ -36,6 +38,23 @@ sentry_config = if node["sentry"]["use_encrypted_data_bag"]
     node["sentry"]["data_bag"],
     node["sentry"]["data_bag_item"]
   )
+elsif node["sentry"]["use_environment"]
+  db_password = ENV['DB_PASSWORD'] or raise "DB_PASSWORD is not specified"
+  db_host = ENV['DB_HOST'] or raise "DB_HOST is not specified"
+  {
+    admin_username: "admin",
+    admin_password: "admin",
+    admin_email: "admin@demo.com",
+    database_name: "sentry",
+    database_user: "sentry",
+    database_password: db_password,
+    database_host: db_host,
+    database_port: "3306",
+    signing_token: SecureRandom.hex,
+    email_host_user: "xxxxxxx",
+    email_host_password: "xxxxxxx",
+    additional_env_vars: {}
+  }.inject({}){|memo,p| memo[p[0].to_s] = p[1]; memo}
 else
   data_bag_item(
     node["sentry"]["data_bag"],

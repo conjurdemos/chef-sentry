@@ -18,6 +18,7 @@
 #
 
 include_recipe "python"
+package 'libmysqlclient-dev'
 
 sentry_user = node["sentry"]["user"]
 sentry_group = node["sentry"]["group"]
