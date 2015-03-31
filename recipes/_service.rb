@@ -29,4 +29,5 @@ runit_service "sentry" do
     config_path: node["sentry"]["config_file_path"],
   })
   action [:enable, :start]
+  retries 2
 end
